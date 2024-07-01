@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -14,7 +14,7 @@ namespace Bransli
 
         private void Form1_Load(object sender, EventArgs e)
         {
-         
+
         }
 
         private Graphics g;
@@ -48,8 +48,16 @@ namespace Bransli
         {
             g = pictureBox1.CreateGraphics();
             g.Clear(Color.White);
-            int order = 8; 
-            Draw(pictureBox1.Width / 2, pictureBox1.Height, 100, Math.PI / 2, order);
+
+            int order;
+            if (int.TryParse(textBoxOrder.Text, out order) && order > 0)
+            {
+                Draw(pictureBox1.Width / 2, pictureBox1.Height, 100, Math.PI / 2, order);
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid positive integer for the number of branches.");
+            }
         }
     }
 }
